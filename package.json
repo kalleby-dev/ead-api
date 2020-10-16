@@ -1,0 +1,30 @@
+{
+  "name": "ead",
+  "version": "0.0.1",
+  "description": "API da plataforma ead",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalleby-dev/ead-api.git"
+  },
+  "keywords": [
+    "plataforma",
+    "EAD"
+  ],
+  "author": "Kalleby Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kalleby-dev/ead-api/issues"
+  },
+  "homepage": "https://github.com/kalleby-dev/ead-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.0.1"
+  }
+}
