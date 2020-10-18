@@ -1,13 +1,10 @@
 require('dotenv-safe').config();
 require('./services/mongo.service');
 const server = require('./server');
+const routes = require('./routes');
 
 const init = async () => {
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: () => 'MAJDEE!',
-  });
+  server.route(routes);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);
