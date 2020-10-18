@@ -14,7 +14,7 @@ const UserSchema = new Schema({
   docNumber: String,
   email: String,
   password: String,
-  statur: Number,
+  status: Number,
   address: {
     street: String,
     complement: String,
