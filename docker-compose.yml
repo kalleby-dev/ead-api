@@ -1,0 +1,32 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    container_name: "eadapi-mongo"
+    restart: "always"
+    volumes:
+      - ./.dbcache/mongo/data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+  api:
+    image: node:14.3-slim
+    container_name: "eadapi-api"
+    ports:
+      - "3000:3000"
+    working_dir: "/home/node/app"
+    volumes:
+      - ./:/home/node/app
+    command:
+      - sh
+      - -c
+      - |
+        npm install
+        npm start
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
