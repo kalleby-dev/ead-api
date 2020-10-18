@@ -30,6 +30,7 @@
     "nodemon": "^2.0.5"
   },
   "dependencies": {
-    "@hapi/hapi": "^20.0.1"
+    "@hapi/hapi": "^20.0.1",
+    "mongoose": "^5.10.9"
   }
 }
