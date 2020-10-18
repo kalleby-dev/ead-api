@@ -1,8 +1,8 @@
-const UserModel = require('../models/users.model');
+const usersModel = require('../models/users.model');
 
 const create = (userData) => {
-  const userObject = new UserModel(userData);
-  return userObject.save();
+  const user = new usersModel(userData);
+  return user.save();
 };
 
 module.exports = {
