@@ -1,12 +1,8 @@
 require('dotenv-safe').config();
-const Hapi = require('@hapi/hapi');
+require('./services/mongo.service');
+const server = require('./server');
 
 const init = async () => {
-  const server = Hapi.server({
-    port: process.env.PORT,
-    host: process.env.HOST,
-  });
-
   server.route({
     method: 'GET',
     path: '/',

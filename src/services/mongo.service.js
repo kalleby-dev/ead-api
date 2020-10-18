@@ -1,0 +1,22 @@
+const mongoose = require('mongoose');
+
+const USER = process.env.MONGO_USER;
+const PASSWORD = process.env.MONGO_PASSWORD;
+
+const HOST = process.env.MONGO_HOST;
+const PORT = process.env.MONGO_PORT;
+const DATABASE = process.env.MONGO_DATABASE;
+
+const uri = `mongodb://${USER}:${PASSWORD}@${HOST}:${PORT}/${DATABASE}`;
+
+const options = {
+  useNewUrlParser: true,
+};
+
+try {
+  mongoose.connect(uri, options);
+} catch (error) {
+  console.error(error);
+}
+
+mongoose.connection.on('error', (err) => console.error(err));
