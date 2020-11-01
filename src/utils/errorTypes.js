@@ -1,3 +1,3 @@
 module.exports = {
-  DUPLICATED_EMAIL: 'DUPLICATED_EMAIL',
+  DUPLICATED_EMAIL: '422',
 };

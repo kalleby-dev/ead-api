@@ -4,7 +4,8 @@ const ERR = require('../utils/errorTypes');
 
 const create = async (req, res) => {
   try {
-    const user = await usersRepository.create(req.payload);
+    const userData = req.payload;
+    const user = await usersRepository.create(userData);
     return res.response(user).code(201);
   } catch (err) {
     switch (err.message) {
