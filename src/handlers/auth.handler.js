@@ -1,19 +1,12 @@
-const hash = require('../utils/encrypt');
 const ERR = require('../utils/errorTypes');
-const { findByEmail } = require('../repositories/users.repository');
+const auth = require('../auth/authenticate.auth');
 
 const login = async (req, res) => {
   try {
-    const data = req.payload;
-    const user = await findByEmail(data.email);
+    const { email, password } = req.payload;
+    await auth.login(email, password);
 
-    const pwdCheck = await hash.compare(data.password, user.password);
-
-    if (pwdCheck === false) {
-      return ERR.types.INVALID_CREDENTIALS();
-    }
-
-    return res.response('ok').code(200);
+    return res.response('Logado com sucesso').code(200);
   } catch (err) {
     return ERR.send(err);
   }
