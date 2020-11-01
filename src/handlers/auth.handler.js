@@ -10,7 +10,7 @@ const login = async (req, res) => {
     const pwdCheck = await hash.compare(data.password, user.password);
 
     if (pwdCheck === false) {
-      throw { ...(new Error()), func: ERR.types.INVALID_CREDENTIALS };
+      return ERR.types.INVALID_CREDENTIALS();
     }
 
     return res.response('ok').code(200);

@@ -7,7 +7,7 @@ const create = async (data) => {
 
   const exists = await usersModel.exists({ email: userData.email });
   if (exists) {
-    throw { ...(new Error()), func: ERR.types.DUPLICATED_EMAIL };
+    throw { error: new Error(), func: ERR.types.DUPLICATED_EMAIL };
   }
 
   userData.password = await encrypt.hash(userData.password, 10);
@@ -19,9 +19,8 @@ const findByEmail = async (email) => {
   const user = await usersModel.findOne({ email });
 
   if (user === null) {
-    throw { ...(new Error()), func: ERR.types.NOT_FOUND };
+    throw { error: new Error(), func: ERR.types.NOT_FOUND };
   }
-
   return user;
 };
 

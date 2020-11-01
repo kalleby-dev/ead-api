@@ -1,8 +1,8 @@
 const boom = require('@hapi/boom');
 
 const types = {
-  NOT_FOUND: () => boom.notFound('Data not found or dosen\'t exists'),
-  DUPLICATED_EMAIL: () => boom.notFound('This user already exists'),
+  NOT_FOUND: () => boom.notFound('Data not found'),
+  DUPLICATED_EMAIL: () => boom.badData('This user already exists'),
   INVALID_CREDENTIALS: () => boom.badData('Invalid data'),
 };
 
