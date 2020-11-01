@@ -1,25 +1,19 @@
 const boom = require('@hapi/boom');
 
-const ERROR_TYPES = {
-  NOT_FOUND: '404',
-  DUPLICATED_EMAIL: '422',
-  INVALID_CREDENTIALS: '422',
+const types = {
+  NOT_FOUND: () => boom.notFound('Data not found or dosen\'t exists'),
+  DUPLICATED_EMAIL: () => boom.notFound('This user already exists'),
+  INVALID_CREDENTIALS: () => boom.badData('Invalid data'),
 };
 
-const sendError = (exception) => {
-  switch (exception.message) {
-    case ERROR_TYPES.NOT_FOUND:
-      return boom.notFound('This user not exists');
-
-    case ERROR_TYPES.INVALID_CREDENTIALS:
-      return boom.badData('Invalid credentials');
-
-    default:
-      return boom.badImplementation(exception);
+const send = (error) => {
+  if (typeof error.func === 'function') {
+    return error.func();
   }
+  return boom.badImplementation(error);
 };
 
 module.exports = {
-  sendError,
-  ERROR_TYPES,
+  send,
+  types,
 };
