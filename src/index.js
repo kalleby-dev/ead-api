@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv-safe').config();
 require('./services/mongo.service');
 const server = require('./server');
