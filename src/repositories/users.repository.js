@@ -13,6 +13,16 @@ const create = async (data) => {
   return user.save();
 };
 
+const findByEmail = async (email) => {
+  const user = await usersModel.find({ email });
+
+  if (Array.isArray(user) === false || user.length === 0) {
+    throw new Error(ERR.NOT_FOUND);
+  }
+  return user;
+};
+
 module.exports = {
   create,
+  findByEmail,
 };
