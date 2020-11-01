@@ -1,19 +1,21 @@
-const boom = require('@hapi/boom');
-const ERR = require('../utils/errorTypes');
+const hash = require('../utils/encrypt');
+const ERROR = require('../utils/errorTypes');
 const { findByEmail } = require('../repositories/users.repository');
 
 const login = async (req, res) => {
   try {
-    const user = await findByEmail(req.payload.email);
+    const data = req.payload;
+    const user = await findByEmail(data.email);
+
+    const pwdCheck = await hash.compare(data.password, user.password);
+
+    if (pwdCheck === false) {
+      throw new Error(ERROR.ERROR_TYPES.INVALID_CREDENTIALS);
+    }
+
     return res.response('ok').code(200);
   } catch (err) {
-    switch (err.message) {
-      case ERR.NOT_FOUND:
-        return boom.notFound('This user not exists');
-
-      default:
-        return boom.badImplementation(err);
-    }
+    return ERROR.sendError(err);
   }
 };
 

@@ -1,12 +1,12 @@
 const usersModel = require('../models/users.model');
 const encrypt = require('../utils/encrypt');
-const ERR = require('../utils/errorTypes');
+const { ERROR_TYPES } = require('../utils/errorTypes');
 
 const create = async (data) => {
   const userData = data;
 
   const exists = await usersModel.exists({ email: userData.email });
-  if (exists) throw new Error(ERR.DUPLICATED_EMAIL);
+  if (exists) throw new Error(ERROR_TYPES.DUPLICATED_EMAIL);
 
   userData.password = await encrypt.hash(userData.password, 10);
   const user = new usersModel(userData);
@@ -14,11 +14,12 @@ const create = async (data) => {
 };
 
 const findByEmail = async (email) => {
-  const user = await usersModel.find({ email });
+  const user = await usersModel.findOne({ email });
 
-  if (Array.isArray(user) === false || user.length === 0) {
-    throw new Error(ERR.NOT_FOUND);
+  if (user === null) {
+    throw new Error(ERROR_TYPES.NOT_FOUND);
   }
+
   return user;
 };
 
