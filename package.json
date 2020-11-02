@@ -34,6 +34,7 @@
     "@hapi/hapi": "^20.0.1",
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
+    "hapi-auth-jwt2": "^10.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "uuid": "^8.3.1"

@@ -7,6 +7,7 @@ module.exports = [
     path: '/login',
     handler: authHandler.login,
     options: {
+      auth: false,
       validate: {
         payload: authSchema,
       },
