@@ -1,3 +1,4 @@
+const JWT = require('../utils/token');
 const hash = require('../utils/encrypt');
 const ERR = require('../utils/errorTypes');
 const { findByEmail } = require('../repositories/users.repository');
@@ -10,7 +11,13 @@ const login = async (email, password) => {
     throw { error: new Error(), func: ERR.types.INVALID_CREDENTIALS };
   }
 
-  return true;
+  const tokenPayload = {
+    iss: JWT.DEFAULT_ISSUER,
+    sub: user.id,
+    exp: JWT.LOGIN_EXP_TIME,
+  };
+
+  return JWT.generate(tokenPayload);
 };
 
 module.exports = {
