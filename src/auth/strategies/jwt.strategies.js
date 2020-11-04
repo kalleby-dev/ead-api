@@ -1,3 +1,5 @@
+// JWT auth SCHEMA
+
 module.exports = {
   name: 'jwt-auth',
   schema: 'jwt',

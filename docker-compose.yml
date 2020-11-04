@@ -27,6 +27,14 @@ services:
     networks:
       - backend
 
+  redis:
+    image: redis:6.0.9-alpine
+    container_name: "eadapi-redis"
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
 networks:
   backend:
     driver: "bridge"

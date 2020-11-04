@@ -9,8 +9,8 @@ const routes = require('./routes');
 const init = async () => {
   server.route(routes);
 
+  // JWT auth config
   await server.register(hapiAuthJwt2);
-
   server.auth.strategy(jwtStrategy.name, jwtStrategy.schema, jwtStrategy.options);
   server.auth.default(jwtStrategy.name);
 
