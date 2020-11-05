@@ -5,6 +5,7 @@ const types = {
   INVALID_CREDENTIALS: () => boom.badData('Invalid data'),
   BAD_TOKEN: () => boom.badImplementation('Token generation error'),
   DUPLICATED_EMAIL: () => boom.badData('This user already exists'),
+  REDIS_NOT_INITIALIZED: () => boom.badImplementation('Redis is not initialized'),
 };
 
 const send = (error) => {
