@@ -31,8 +31,11 @@ const setCache = (user) => {
   cache.set(cache.PREFIX.user(user.id), cache.toCache(user), LOGIN_EXP_TIME);
 };
 
+const delCache = (userId) => cache.del(cache.PREFIX.user(userId));
+
 module.exports = {
   create,
   findByEmail,
   setCache,
+  delCache,
 };
