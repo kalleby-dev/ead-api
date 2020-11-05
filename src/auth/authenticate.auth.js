@@ -1,10 +1,10 @@
 const JWT = require('../utils/token');
 const hash = require('../utils/encrypt');
 const ERR = require('../utils/errorTypes');
-const userRepository = require('../repositories/users.repository');
+const { findByEmail } = require('../repositories/users.repository');
 
 const login = async (email, password) => {
-  const user = await userRepository.findByEmail(email);
+  const user = await findByEmail(email);
   const passCheck = await hash.compare(password, user.password);
 
   if (passCheck === false) {
@@ -16,8 +16,12 @@ const login = async (email, password) => {
     sub: user.id,
     exp: JWT.LOGIN_EXP_TIME,
   };
-  userRepository.setCache(user);
-  return JWT.generate(tokenPayload);
+
+  const token = await JWT.generate(tokenPayload);
+  return {
+    user,
+    token,
+  };
 };
 
 module.exports = {
