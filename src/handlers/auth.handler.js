@@ -14,6 +14,17 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  const { credentials, token } = req.auth;
+  try {
+    console.log(credentials);
+    return res.response({ credentials, token }).code(200);
+  } catch (err) {
+    return ERR.send(err);
+  }
+};
+
 module.exports = {
   login,
+  logout,
 };

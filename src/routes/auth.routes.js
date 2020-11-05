@@ -13,4 +13,9 @@ module.exports = [
       },
     },
   },
+  {
+    method: 'POST',
+    path: '/logout',
+    handler: authHandler.logout,
+  },
 ];
