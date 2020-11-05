@@ -1,6 +1,9 @@
 const usersModel = require('../models/users.model');
 const encrypt = require('../utils/encrypt');
+const cache = require('./cache.repository');
 const ERR = require('../utils/errorTypes');
+
+const { LOGIN_EXP_TIME } = require('../utils/token');
 
 const create = async (data) => {
   const userData = data;
@@ -24,7 +27,12 @@ const findByEmail = async (email) => {
   return user;
 };
 
+const setCache = (user) => {
+  cache.set(cache.PREFIX.user(user.id), cache.toCache(user), LOGIN_EXP_TIME);
+};
+
 module.exports = {
   create,
   findByEmail,
+  setCache,
 };

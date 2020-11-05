@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv-safe').config();
 require('./services/mongo.service');
-require('./services/redis.service');
+require('./services/redis.service').connect();
 
 const hapiAuthJwt2 = require('hapi-auth-jwt2');
 const jwtStrategy = require('./auth/strategies/jwt.strategies');

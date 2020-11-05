@@ -8,8 +8,16 @@ const del = (key) => Redis.del(key);
 
 const exists = (key) => Redis.exists(key);
 
+const toCache = (value) => JSON.stringify(value);
+
+const PREFIX = {
+  user: (userId) => `userId:${userId}`,
+};
+
 module.exports = {
   set,
   del,
   exists,
+  toCache,
+  PREFIX,
 };

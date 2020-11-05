@@ -3,14 +3,14 @@ const ERR = require('../utils/errorTypes');
 
 let redis = null;
 
-exports.connect = () => {
+const connect = () => {
   redis = new Redis({
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
   });
 };
 
-exports.get = () => {
+const get = () => {
   if (redis === null) {
     throw { err: new Error(), func: ERR.types.REDIS_NOT_INITIALIZED };
   }
@@ -20,4 +20,6 @@ exports.get = () => {
 
 module.exports = {
   redis,
+  connect,
+  get,
 };
