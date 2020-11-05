@@ -1,7 +1,8 @@
 const JWT = require('../utils/token');
 const hash = require('../utils/encrypt');
 const ERR = require('../utils/errorTypes');
-const { findByEmail } = require('../repositories/users.repository');
+const cache = require('../repositories/cache.repository');
+const { findByEmail, delCache } = require('../repositories/users.repository');
 
 const login = async (email, password) => {
   const user = await findByEmail(email);
@@ -24,6 +25,12 @@ const login = async (email, password) => {
   };
 };
 
+const logout = (userId, token) => {
+  delCache(userId);
+  cache.set(cache.PREFIX.blacklistToken(token), 1, JWT.LOGIN_EXP_TIME);
+};
+
 module.exports = {
   login,
+  logout,
 };

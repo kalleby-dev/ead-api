@@ -12,6 +12,7 @@ const toCache = (value) => JSON.stringify(value);
 
 const PREFIX = {
   user: (userId) => `userId:${userId}`,
+  blacklistToken: (token) => `blacklistToken:${token}`,
 };
 
 module.exports = {

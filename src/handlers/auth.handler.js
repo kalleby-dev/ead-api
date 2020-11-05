@@ -14,10 +14,11 @@ const login = async (req, res) => {
   }
 };
 
+// Falta invalidar o token na Blacklist
 const logout = async (req, res) => {
   const { credentials, token } = req.auth;
   try {
-    console.log(credentials);
+    auth.logout(credentials.sub, token);
     return res.response({ credentials, token }).code(200);
   } catch (err) {
     return ERR.send(err);
